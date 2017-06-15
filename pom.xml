@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.zipcoder</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>crud-app-starter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>crud-app-starter</name>
+	<description>Starter project for Spring Boot-based CRUD applications</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
