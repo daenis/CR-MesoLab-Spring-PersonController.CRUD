@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <style media="screen">
+    h2 {
+      font-size: 1.2em;
+    }
+
+    #mainContent {
+    display: inline-flex;
+    }
+
+    #displayContainer {
+      width: 50%;
+    }
+    </style>
+</head>
+<body>
+  <section id="mainContent">
+
+
+    <section id="requestForms">
+
+
+      <section>
+        <h2>GET person list</h2>
+        <button type="button" name="submitGetAll" onclick="getPeople()">Submit GET All</button>
+      </section>
+      <section>
+        <h2>GET person by id</h2>
+        <label for="getPersonId">Person ID:</label><input type="number" name="getPersonId" value="1" id="getPersonId"><br>
+        <button type="button" name="submitGet" onclick="getPerson()">Submit GET</button>
+      </section>
+      <section>
+        <h2>POST new Person:</h2>
+
+        <label for="firstName">First Name:</label><input type="text" name="firstName" value="foo" id="postPersonFirstName"><br>
+        <label for="lastName">Last Name:</label><input type="text" name="lastName" value="bar" id="postPersonLastName"><br>
+        <button type="button" name="submitPost" onclick="postPerson()">Submit POST</button>
+      </section>
+
+      <section>
+        <h2>PUT updated person</h2>
+        <label for="putFirstName">First Name:</label><input type="text" name="putFirstName" value="Han" id="putPersonFirstName"><br>
+        <label for="putLastName">Last Name:</label><input type="text" name="putLastName" value="Solo" id="putPersonLastName"><br>
+        <label for="putId">ID:</label><input type="number" name="putId" value="" id="putPersonId"><br>
+        <button type="button" name="submitPut" onclick="putPerson()">Submit PUT</button>
+      </section>
+
+      <section>
+        <h2>DELETE person by ID</h2>
+        <label for="delPersonId">Person ID:</label><input type="number" name="delPersonId" value="1" id="deletePersonId"><br>
+        <button type="button" name="submitDelete" onclick="deletePerson()">Submit DELETE</button>
+      </section>
+    </section>
+    <section id="displayContainer" >
+      <div class="display" id="displayBox" >
+        Nothing to Display
+      </div>
+
+    </section>
+  </section>
+<script>
+
+function updateDisplay(content, header){
+  var newContent = content;
+  if(header != null){
+    newContent = header + newContent;
+  }
+  document.getElementById("displayBox").innerHTML = newContent;
+}
+function postPerson(){
+  // get values from fields
+  var postFirstName = document.getElementById("postPersonFirstName").value;
+  var postLastName = document.getElementById("postPersonLastName").value;
+  var URI = "http://localhost:8080/people/";
+  var requestType = "POST";
+
+  var postData = JSON.stringify({
+  "firstName": postFirstName,
+  "lastName": postLastName
+});
+  console.log("Requesting post for person:");
+  console.log(postData);
+  // send POST request
+  var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this)
+    console.log(this.responseText);
+    updateDisplay(this.responseText, requestType + URI + ":<br>");
+  }
+});
+
+xhr.open(requestType, URI);
+xhr.setRequestHeader("content-type", "application/json");
+xhr.setRequestHeader("cache-control", "no-cache");
+// xhr.setRequestHeader("postman-token", "b11af5d0-9526-b27a-e6fc-a89dc4d348fc");
+
+xhr.send(postData);
+  // update display with result
+}
+
+
+
+function putPerson(){
+  // get values from fields
+  // send POST request
+  // update display with result
+  // get values from fields
+  var putFirstName = document.getElementById("putPersonFirstName").value;
+  var putLastName = document.getElementById("putPersonLastName").value;
+  var putId = document.getElementById("putPersonId").value;
+  var URI = "http://localhost:8080/people/" + putId;
+  var requestType = "PUT";
+
+  var putData = JSON.stringify({
+  "firstName": putFirstName,
+  "lastName": putLastName,
+  "id": putId
+});
+  console.log("Requesting put for person:");
+  console.log(putData);
+  // send POST request
+  var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this)
+    console.log(this.responseText);
+    // updateDisplay(this.responseText);
+    updateDisplay(this.responseText, requestType + URI + ":<br>");
+  }
+});
+
+xhr.open(requestType, URI);
+xhr.setRequestHeader("content-type", "application/json");
+xhr.setRequestHeader("cache-control", "no-cache");
+// xhr.setRequestHeader("postman-token", "b11af5d0-9526-b27a-e6fc-a89dc4d348fc");
+
+xhr.send(putData);
+}
+
+function getPerson(){
+
+  var getId = document.getElementById("getPersonId").value;
+  var URI = "http://localhost:8080/people/" + getId;
+  var requestType = "GET";
+  var xhr = new XMLHttpRequest();
+
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this)
+    console.log(this.responseText);
+    updateDisplay(this.responseText, requestType + URI + ":<br>");
+  }
+});
+
+xhr.open(requestType, URI);
+xhr.setRequestHeader("content-type", "application/json");
+xhr.setRequestHeader("cache-control", "no-cache");
+// xhr.setRequestHeader("postman-token", "b11af5d0-9526-b27a-e6fc-a89dc4d348fc");
+
+xhr.send(null);
+  // get values from fields
+  // send POST request
+  // update display with result
+}
+
+function getPeople(){
+  // send GET /person request
+  // update display with result
+  var URI = "http://localhost:8080/people/";
+  var requestType = "GET";
+
+  var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this)
+    console.log(this.responseText);
+    updateDisplay(this.responseText, requestType + URI + ":<br>");
+  }
+});
+
+xhr.open(requestType, URI);
+xhr.setRequestHeader("content-type", "application/json");
+xhr.setRequestHeader("cache-control", "no-cache");
+// xhr.setRequestHeader("postman-token", "b11af5d0-9526-b27a-e6fc-a89dc4d348fc");
+
+xhr.send(null);
+}
+
+function deletePerson(){
+
+    var deleteId = document.getElementById("deletePersonId").value;
+    var URI = "http://localhost:8080/people/" + deleteId;
+    var requestType = "DELETE";
+    var xhr = new XMLHttpRequest();
+
+  xhr.withCredentials = true;
+
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === 4) {
+      console.log(this)
+      console.log(this.responseText);
+      updateDisplay(this.responseText, requestType + URI + ":<br>");
+    }
+  });
+
+  xhr.open(requestType, URI);
+  xhr.setRequestHeader("content-type", "application/json");
+  xhr.setRequestHeader("cache-control", "no-cache");
+  // xhr.setRequestHeader("postman-token", "b11af5d0-9526-b27a-e6fc-a89dc4d348fc");
+
+  xhr.send(null);
+  // get values from fields
+  // send DELETE request
+  // update display with result
+}
+</script>
+</body>
+</html>
