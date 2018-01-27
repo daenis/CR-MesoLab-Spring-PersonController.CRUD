@@ -29,10 +29,10 @@ public class TestPersonService extends BaseTestService<Person> {
     }
 
     @Test
-    public void testFindPersonById() {
-        when(personRepository.findOne(entityId))
+    public void testCreatePerson() {
+        when(personRepository.save(entity))
                 .thenReturn(entity);
-        returnedEntity = personService.findPersonById(entityId);
+        returnedEntity = personService.createPerson(entity);
         Assert.assertEquals(entityNotReturnedMessage, entity, returnedEntity);
     }
 
@@ -42,6 +42,22 @@ public class TestPersonService extends BaseTestService<Person> {
                 .thenReturn(entityCollection);
         returnedEntityCollection = personService.findPeople();
         Assert.assertEquals(entityNotReturnedMessage, entityCollection, returnedEntityCollection);
+    }
+
+    @Test
+    public void testFindPersonById() {
+        when(personRepository.findOne(entityId))
+                .thenReturn(entity);
+        returnedEntity = personService.findPersonById(entityId);
+        Assert.assertEquals(entityNotReturnedMessage, entity, returnedEntity);
+    }
+
+    @Test
+    public void testUpdatePerson() {
+        when(personRepository.save(entity))
+                .thenReturn(entity);
+        returnedEntity = personService.updatePersonById(entity, entityId);
+        Assert.assertEquals(entityNotReturnedMessage, entity, returnedEntity);
     }
 
 }

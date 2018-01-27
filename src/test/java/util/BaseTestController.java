@@ -36,7 +36,7 @@ public abstract class BaseTestController<E> {
         entityCollectionAsJsonString = JsonTestUtil.writeEntityAsJsonString(entityCollection);
     }
 
-    public ResultActions mvcPerformPost
+    public ResultActions mvcPerformPostWithNoPathVariables
             (String endpointUrl, String entityAsJsonString) throws Exception {
         return mvc.perform(post(endpointUrl)
                 .contentType(MediaType.APPLICATION_JSON)

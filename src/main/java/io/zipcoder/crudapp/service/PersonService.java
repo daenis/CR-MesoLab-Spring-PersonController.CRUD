@@ -17,12 +17,12 @@ public class PersonService {
         return personRepository.save(person);
     }
 
-    public Person findPersonById(int id) {
-        return personRepository.findOne(id);
-    }
-
     public Collection<Person> findPeople() {
         return personRepository.findAll();
+    }
+
+    public Person findPersonById(int id) {
+        return personRepository.findOne(id);
     }
 
     public Person updatePersonById(Person person, int id) {

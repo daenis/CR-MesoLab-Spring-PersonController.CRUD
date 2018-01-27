@@ -34,11 +34,10 @@ public class TestPersonController extends BaseTestController<Person> {
     }
 
     @Test
-    public void testFindPersonById() throws Exception {
-        when(personService.findPersonById(childEntityId))
+    public void testCreatePerson() throws Exception {
+        when(personService.createPerson(entity))
                 .thenReturn(entity);
-        returnedEntity = mvcPerformGetWithOnePathVariable(idEndpointUrl, childEntityId);
-        Assert.assertEquals(entityNotReturnedMessage, entityAsJsonString, returnedEntity);
+        mvcPerformPostWithNoPathVariables(baseEndpointUrl, entityAsJsonString);
     }
 
     @Test
@@ -47,6 +46,28 @@ public class TestPersonController extends BaseTestController<Person> {
                 .thenReturn(entityCollection);
         returnedEntity = mvcPerformGetWithNoPathVariables(baseEndpointUrl);
         Assert.assertEquals(entityNotReturnedMessage, entityCollectionAsJsonString, returnedEntity);
+    }
+
+    @Test
+    public void testFindPersonById() throws Exception {
+        when(personService.findPersonById(childEntityId))
+                .thenReturn(entity);
+        returnedEntity = mvcPerformGetWithOnePathVariable(idEndpointUrl, childEntityId);
+        Assert.assertEquals(entityNotReturnedMessage, entityAsJsonString, returnedEntity);
+    }
+
+    @Test
+    public void testUpdatePerson() throws Exception {
+        when(personService.updatePersonById(entity, childEntityId))
+                .thenReturn(entity);
+        mvcPerformUpdateWithOnePathVariable(idEndpointUrl, childEntityId, entityAsJsonString);
+    }
+
+    @Test
+    public void testDeletePersonById() throws Exception {
+        when(personService.findPersonById(childEntityId))
+                .thenReturn(entity);
+        returnedEntity = mvcPerformDeleteWithOnePathVariable(idEndpointUrl, childEntityId);
     }
 
 }
