@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
-@RequestMapping(value = "/api/people")
+@RequestMapping(value = "/api/majors")
 public class MajorController {
 
     @Autowired

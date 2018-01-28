@@ -3,9 +3,11 @@ package io.zipcoder.crudapp.service;
 import io.zipcoder.crudapp.model.Major;
 import io.zipcoder.crudapp.repository.MajorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
+@Service
 public class MajorService {
 
     @Autowired

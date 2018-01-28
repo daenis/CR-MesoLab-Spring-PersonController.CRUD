@@ -13,7 +13,11 @@ public class PersonService {
     @Autowired
     private PersonRepository personRepository;
 
+    @Autowired
+    private MajorService majorService;
+
     public Person createPerson(Person person) {
+        person.setMajor(majorService.findMajorById(person.getMajorId()));
         return personRepository.save(person);
     }
 

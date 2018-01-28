@@ -1,5 +1,7 @@
 package io.zipcoder.crudapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,17 +14,18 @@ public class Person {
     private String lastName;
     private int majorId;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "majorId", referencedColumnName = "id", insertable = false, updatable = false)
     private Major major;
 
     public Person() {
     }
 
-    public Person(String firstName, String lastName, int majorId) {
+    public Person(String firstName, String lastName, int majorId, Major major) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.majorId = majorId;
+        this.major = major;
     }
 
     public int getId() {
@@ -55,6 +58,14 @@ public class Person {
 
     public void setMajorId(int majorId) {
         this.majorId = majorId;
+    }
+
+    public Major getMajor() {
+        return major;
+    }
+
+    public void setMajor(Major major) {
+        this.major = major;
     }
 
 }
