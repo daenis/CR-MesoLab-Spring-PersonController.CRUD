@@ -20,19 +20,19 @@ public class PersonController {
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Person> createPerson(@RequestBody Person person) {
         Person returnPerson = personService.createPerson(person);
-        return new ResponseEntity<>(returnPerson, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Person> findPersonById(@PathVariable("id") int id) {
-        Person person = personService.findPersonById(id);
-        return new ResponseEntity<>(person, HttpStatus.OK);
+        return new ResponseEntity<>(returnPerson, HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Collection<Person>> findAllPeople() {
         Collection<Person> people = personService.findPeople();
         return new ResponseEntity<>(people, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Person> findPersonById(@PathVariable("id") int id) {
+        Person person = personService.findPersonById(id);
+        return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)

@@ -13,16 +13,20 @@ public class PersonService {
     @Autowired
     private PersonRepository personRepository;
 
-    public Person createPerson(Person person) {
-        return personRepository.save(person);
-    }
+    @Autowired
+    private MajorService majorService;
 
-    public Person findPersonById(int id) {
-        return personRepository.findOne(id);
+    public Person createPerson(Person person) {
+        person.setMajor(majorService.findMajorById(person.getMajorId()));
+        return personRepository.save(person);
     }
 
     public Collection<Person> findPeople() {
         return personRepository.findAll();
+    }
+
+    public Person findPersonById(int id) {
+        return personRepository.findOne(id);
     }
 
     public Person updatePersonById(Person person, int id) {
