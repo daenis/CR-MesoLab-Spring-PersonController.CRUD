@@ -1,6 +1,6 @@
 package io.zipcoder.crudapp.controller;
 
-import io.zipcoder.crudapp.model.Person;
+import io.zipcoder.crudapp.model.Student;
 import io.zipcoder.crudapp.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,27 +18,27 @@ public class PersonController {
     private PersonService personService;
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Person> createPerson(@RequestBody Person person) {
-        Person returnPerson = personService.createPerson(person);
-        return new ResponseEntity<>(returnPerson, HttpStatus.CREATED);
+    public ResponseEntity<Student> createPerson(@RequestBody Student student) {
+        Student returnStudent = personService.createPerson(student);
+        return new ResponseEntity<>(returnStudent, HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Collection<Person>> findAllPeople() {
-        Collection<Person> people = personService.findPeople();
+    public ResponseEntity<Collection<Student>> findAllPeople() {
+        Collection<Student> people = personService.findPeople();
         return new ResponseEntity<>(people, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Person> findPersonById(@PathVariable("id") int id) {
-        Person person = personService.findPersonById(id);
-        return new ResponseEntity<>(person, HttpStatus.OK);
+    public ResponseEntity<Student> findPersonById(@PathVariable("id") int id) {
+        Student student = personService.findPersonById(id);
+        return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Person> updatePersonById(@RequestBody Person person, @PathVariable("id") int id) {
-        Person returnPerson = personService.updatePersonById(person, id);
-        return new ResponseEntity<>(returnPerson, HttpStatus.OK);
+    public ResponseEntity<Student> updatePersonById(@RequestBody Student student, @PathVariable("id") int id) {
+        Student returnStudent = personService.updatePersonById(student, id);
+        return new ResponseEntity<>(returnStudent, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

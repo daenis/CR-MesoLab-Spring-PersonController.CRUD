@@ -1,6 +1,6 @@
 package io.zipcoder.crudapp.service;
 
-import io.zipcoder.crudapp.model.Person;
+import io.zipcoder.crudapp.model.Student;
 import io.zipcoder.crudapp.repository.PersonRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,7 +14,7 @@ import util.BaseTestService;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TestPersonService extends BaseTestService<Person> {
+public class TestStudentService extends BaseTestService<Student> {
 
     @Mock
     private static PersonRepository personRepository;
@@ -24,7 +24,7 @@ public class TestPersonService extends BaseTestService<Person> {
 
     @Before
     public void init() {
-        entity = new Person();
+        entity = new Student();
         initDependentVariables();
     }
 

@@ -35,15 +35,15 @@ Now that your CRUD application is working, it's time to make sure the correct HT
 
 **Endpoints:**
 
-- `POST /people` - create a new person
+- `POST /people` - create a new student
   - Response: `201 Created`
 - `GET /people` - get the list of all people
   - Response: `200 OK` 
-- `GET /people/{id}` - Get the person with id number `{id}`
+- `GET /people/{id}` - Get the student with id number `{id}`
   - Response: `200 OK` if found, else `404 Not Found`
-- `PUT /people/{id}` - Update the person with id number `{id}`
+- `PUT /people/{id}` - Update the student with id number `{id}`
   - Response: `200 OK` if updated, `201 Created` if a new entity was created
-- `DELETE /people/{id}` - delete the person with id number `{id}`
+- `DELETE /people/{id}` - delete the student with id number `{id}`
   - Response: `204 No Content`
 
 **Person class and  ID configuration for H2**:

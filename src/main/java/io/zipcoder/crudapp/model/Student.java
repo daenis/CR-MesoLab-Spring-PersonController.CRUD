@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
-public class Person {
+public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,10 +18,10 @@ public class Person {
     @JoinColumn(name = "majorId", referencedColumnName = "id", insertable = false, updatable = false)
     private Major major;
 
-    public Person() {
+    public Student() {
     }
 
-    public Person(String firstName, String lastName, int majorId, Major major) {
+    public Student(String firstName, String lastName, int majorId, Major major) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.majorId = majorId;

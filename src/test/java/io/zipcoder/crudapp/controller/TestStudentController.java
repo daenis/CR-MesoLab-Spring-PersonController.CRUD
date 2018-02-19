@@ -1,6 +1,6 @@
 package io.zipcoder.crudapp.controller;
 
-import io.zipcoder.crudapp.model.Person;
+import io.zipcoder.crudapp.model.Student;
 import io.zipcoder.crudapp.service.PersonService;
 import org.junit.Assert;
 import org.junit.Before;
@@ -16,7 +16,7 @@ import util.BaseTestController;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-public class TestPersonController extends BaseTestController<Person> {
+public class TestStudentController extends BaseTestController<Student> {
 
     @MockBean
     private PersonService personService;
@@ -29,7 +29,7 @@ public class TestPersonController extends BaseTestController<Person> {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(personController).build();
         baseEndpointUrl = "/api/people";
-        entity = new Person();
+        entity = new Student();
         initDependentVariables();
     }
 
