@@ -28,44 +28,44 @@ public class TestStudentController extends BaseTestController<Student> {
     public void init() {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(studentController).build();
-        baseEndpointUrl = "/api/people";
+        baseEndpointUrl = "/api/students";
         entity = new Student();
         initDependentVariables();
     }
 
     @Test
-    public void testCreatePerson() throws Exception {
-        when(studentService.createPerson(entity))
+    public void testCreateStudent() throws Exception {
+        when(studentService.createStudent(entity))
                 .thenReturn(entity);
         mvcPerformPostWithNoPathVariables(baseEndpointUrl, entityAsJsonString);
     }
 
     @Test
-    public void testFindPeople() throws Exception {
-        when(studentService.findPeople())
+    public void testFindAllStudents() throws Exception {
+        when(studentService.findAllStudents())
                 .thenReturn(entityCollection);
         returnedEntity = mvcPerformGetWithNoPathVariables(baseEndpointUrl);
         Assert.assertEquals(entityNotReturnedMessage, entityCollectionAsJsonString, returnedEntity);
     }
 
     @Test
-    public void testFindPersonById() throws Exception {
-        when(studentService.findPersonById(childEntityId))
+    public void testFindStudentById() throws Exception {
+        when(studentService.findStudentById(childEntityId))
                 .thenReturn(entity);
         returnedEntity = mvcPerformGetWithOnePathVariable(idEndpointUrl, childEntityId);
         Assert.assertEquals(entityNotReturnedMessage, entityAsJsonString, returnedEntity);
     }
 
     @Test
-    public void testUpdatePerson() throws Exception {
-        when(studentService.updatePersonById(entity, childEntityId))
+    public void testUpdateStudentById() throws Exception {
+        when(studentService.updateStudentById(childEntityId, entity))
                 .thenReturn(entity);
         mvcPerformUpdateWithOnePathVariable(idEndpointUrl, childEntityId, entityAsJsonString);
     }
 
     @Test
-    public void testDeletePersonById() throws Exception {
-        when(studentService.findPersonById(childEntityId))
+    public void testDeleteStudentById() throws Exception {
+        when(studentService.findStudentById(childEntityId))
                 .thenReturn(entity);
         returnedEntity = mvcPerformDeleteWithOnePathVariable(idEndpointUrl, childEntityId);
     }

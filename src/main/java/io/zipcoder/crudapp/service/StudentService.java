@@ -17,24 +17,24 @@ public class StudentService {
         this.studentRepository =studentRepository;
     }
 
-    public Student createPerson(Student student) {
+    public Student createStudent(Student student) {
         return studentRepository.save(student);
     }
 
-    public Collection<Student> findPeople() {
+    public Collection<Student> findAllStudents() {
         return studentRepository.findAll();
     }
 
-    public Student findPersonById(int id) {
+    public Student findStudentById(int id) {
         return studentRepository.findOne(id);
     }
 
-    public Student updatePersonById(Student student, int id) {
+    public Student updateStudentById(int id, Student student) {
         student.setId(id);
         return studentRepository.save(student);
     }
 
-    public void deletePersonById(int id) {
+    public void deleteStudentById(int id) {
         studentRepository.delete(id);
     }
 

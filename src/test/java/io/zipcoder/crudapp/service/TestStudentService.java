@@ -22,9 +22,7 @@ public class TestStudentService extends BaseTestService<Student> {
 
     @InjectMocks
     private static StudentService studentService = new StudentService(studentRepository);
-
-    private Major major;
-
+    
     @Before
     public void init() {
         entity = new Student();
@@ -32,34 +30,34 @@ public class TestStudentService extends BaseTestService<Student> {
     }
 
     @Test
-    public void testCreatePerson() {
+    public void testCreateStudent() {
         when(studentRepository.save(entity))
                 .thenReturn(entity);
-        returnedEntity = studentService.createPerson(entity);
+        returnedEntity = studentService.createStudent(entity);
         Assert.assertEquals(entityNotReturnedMessage, entity, returnedEntity);
     }
 
     @Test
-    public void testFindPeople() {
+    public void testFindAllStudents() {
         when(studentRepository.findAll())
                 .thenReturn(entityCollection);
-        returnedEntityCollection = studentService.findPeople();
+        returnedEntityCollection = studentService.findAllStudents();
         Assert.assertEquals(entityNotReturnedMessage, entityCollection, returnedEntityCollection);
     }
 
     @Test
-    public void testFindPersonById() {
+    public void testFindStudentById() {
         when(studentRepository.findOne(entityId))
                 .thenReturn(entity);
-        returnedEntity = studentService.findPersonById(entityId);
+        returnedEntity = studentService.findStudentById(entityId);
         Assert.assertEquals(entityNotReturnedMessage, entity, returnedEntity);
     }
 
     @Test
-    public void testUpdatePerson() {
+    public void testUpdateStudentById() {
         when(studentRepository.save(entity))
                 .thenReturn(entity);
-        returnedEntity = studentService.updatePersonById(entity, entityId);
+        returnedEntity = studentService.updateStudentById(entityId, entity);
         Assert.assertEquals(entityNotReturnedMessage, entity, returnedEntity);
     }
 
