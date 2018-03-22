@@ -10,8 +10,12 @@ import java.util.Collection;
 @Service
 public class StudentService {
 
-    @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository =studentRepository;
+    }
 
     public Student createPerson(Student student) {
         return studentRepository.save(student);

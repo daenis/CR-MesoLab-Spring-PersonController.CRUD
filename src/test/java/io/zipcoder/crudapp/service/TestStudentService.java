@@ -21,7 +21,7 @@ public class TestStudentService extends BaseTestService<Student> {
     private static StudentRepository studentRepository;
 
     @InjectMocks
-    private static StudentService studentService = new StudentService();
+    private static StudentService studentService = new StudentService(studentRepository);
 
     private Major major;
 
