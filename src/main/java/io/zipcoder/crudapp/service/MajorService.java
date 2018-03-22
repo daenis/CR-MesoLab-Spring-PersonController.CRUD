@@ -25,7 +25,7 @@ public class MajorService {
         return majorRepository.findOne(id);
     }
 
-    public Major updateMajorById(Major major, int id) {
+    public Major updateMajorById(int id, Major major) {
         major.setId(id);
         return majorRepository.save(major);
     }
