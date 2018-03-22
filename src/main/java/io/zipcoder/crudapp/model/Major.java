@@ -17,8 +17,7 @@ public class Major implements Serializable {
     public Major() {
     }
 
-    public Major(int id, String name) {
-        this.id = id;
+    public Major(String name) {
         this.name = name;
     }
 

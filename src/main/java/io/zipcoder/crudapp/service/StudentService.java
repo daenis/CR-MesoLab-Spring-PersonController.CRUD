@@ -13,11 +13,7 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-    @Autowired
-    private MajorService majorService;
-
     public Student createPerson(Student student) {
-        student.setMajor(majorService.findMajorById(student.getMajorId()));
         return studentRepository.save(student);
     }
 

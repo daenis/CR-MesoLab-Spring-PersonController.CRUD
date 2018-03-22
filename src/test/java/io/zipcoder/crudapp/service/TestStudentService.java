@@ -1,5 +1,6 @@
 package io.zipcoder.crudapp.service;
 
+import io.zipcoder.crudapp.model.Major;
 import io.zipcoder.crudapp.model.Student;
 import io.zipcoder.crudapp.repository.StudentRepository;
 import org.junit.Assert;
@@ -21,6 +22,8 @@ public class TestStudentService extends BaseTestService<Student> {
 
     @InjectMocks
     private static StudentService studentService = new StudentService();
+
+    private Major major;
 
     @Before
     public void init() {

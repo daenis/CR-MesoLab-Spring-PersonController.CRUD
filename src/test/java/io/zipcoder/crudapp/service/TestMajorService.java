@@ -20,7 +20,7 @@ public class TestMajorService extends BaseTestService<Major> {
     private static MajorRepository majorRepository;
 
     @InjectMocks
-    private static MajorService majorService = new MajorService();
+    private static MajorService majorService = new MajorService(majorRepository);
 
     @Before
     public void init() {
@@ -56,7 +56,7 @@ public class TestMajorService extends BaseTestService<Major> {
     public void testUpdateMajor() {
         when(majorRepository.save(entity))
                 .thenReturn(entity);
-        returnedEntity = majorService.updateMajorById(entity, entityId);
+        returnedEntity = majorService.updateMajorById(entityId, entity);
         Assert.assertEquals(entityNotReturnedMessage, entity, returnedEntity);
     }
 
