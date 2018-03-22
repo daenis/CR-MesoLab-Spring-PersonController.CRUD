@@ -1,7 +1,7 @@
 package io.zipcoder.crudapp.controller;
 
 import io.zipcoder.crudapp.model.Student;
-import io.zipcoder.crudapp.service.PersonService;
+import io.zipcoder.crudapp.service.StudentService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,15 +19,15 @@ import static org.mockito.Mockito.when;
 public class TestStudentController extends BaseTestController<Student> {
 
     @MockBean
-    private PersonService personService;
+    private StudentService studentService;
 
     @InjectMocks
-    private PersonController personController;
+    private StudentController studentController;
 
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
-        mvc = MockMvcBuilders.standaloneSetup(personController).build();
+        mvc = MockMvcBuilders.standaloneSetup(studentController).build();
         baseEndpointUrl = "/api/people";
         entity = new Student();
         initDependentVariables();
@@ -35,14 +35,14 @@ public class TestStudentController extends BaseTestController<Student> {
 
     @Test
     public void testCreatePerson() throws Exception {
-        when(personService.createPerson(entity))
+        when(studentService.createPerson(entity))
                 .thenReturn(entity);
         mvcPerformPostWithNoPathVariables(baseEndpointUrl, entityAsJsonString);
     }
 
     @Test
     public void testFindPeople() throws Exception {
-        when(personService.findPeople())
+        when(studentService.findPeople())
                 .thenReturn(entityCollection);
         returnedEntity = mvcPerformGetWithNoPathVariables(baseEndpointUrl);
         Assert.assertEquals(entityNotReturnedMessage, entityCollectionAsJsonString, returnedEntity);
@@ -50,7 +50,7 @@ public class TestStudentController extends BaseTestController<Student> {
 
     @Test
     public void testFindPersonById() throws Exception {
-        when(personService.findPersonById(childEntityId))
+        when(studentService.findPersonById(childEntityId))
                 .thenReturn(entity);
         returnedEntity = mvcPerformGetWithOnePathVariable(idEndpointUrl, childEntityId);
         Assert.assertEquals(entityNotReturnedMessage, entityAsJsonString, returnedEntity);
@@ -58,14 +58,14 @@ public class TestStudentController extends BaseTestController<Student> {
 
     @Test
     public void testUpdatePerson() throws Exception {
-        when(personService.updatePersonById(entity, childEntityId))
+        when(studentService.updatePersonById(entity, childEntityId))
                 .thenReturn(entity);
         mvcPerformUpdateWithOnePathVariable(idEndpointUrl, childEntityId, entityAsJsonString);
     }
 
     @Test
     public void testDeletePersonById() throws Exception {
-        when(personService.findPersonById(childEntityId))
+        when(studentService.findPersonById(childEntityId))
                 .thenReturn(entity);
         returnedEntity = mvcPerformDeleteWithOnePathVariable(idEndpointUrl, childEntityId);
     }
