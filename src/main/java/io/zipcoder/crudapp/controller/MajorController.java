@@ -24,7 +24,7 @@ public class MajorController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Collection<Major>> findAllPeople() {
+    public ResponseEntity<Collection<Major>> findAllMajors() {
         Collection<Major> people = majorService.findAllMajors();
         return new ResponseEntity<>(people, HttpStatus.OK);
     }
