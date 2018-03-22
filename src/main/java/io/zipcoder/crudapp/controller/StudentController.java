@@ -14,8 +14,12 @@ import java.util.Collection;
 @RequestMapping(value = "/api/people")
 public class StudentController {
 
-    @Autowired
     private StudentService studentService;
+
+    @Autowired
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Student> createPerson(@RequestBody Student student) {
