@@ -1,7 +1,8 @@
 package io.zipcoder.crudapp.service;
 
-import io.zipcoder.crudapp.model.Person;
-import io.zipcoder.crudapp.repository.PersonRepository;
+import io.zipcoder.crudapp.model.Major;
+import io.zipcoder.crudapp.model.Student;
+import io.zipcoder.crudapp.repository.StudentRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,49 +15,49 @@ import util.BaseTestService;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TestPersonService extends BaseTestService<Person> {
+public class TestStudentService extends BaseTestService<Student> {
 
     @Mock
-    private static PersonRepository personRepository;
+    private static StudentRepository studentRepository;
 
     @InjectMocks
-    private static PersonService personService = new PersonService();
+    private static StudentService studentService = new StudentService(studentRepository);
 
     @Before
     public void init() {
-        entity = new Person();
+        entity = new Student();
         initDependentVariables();
     }
 
     @Test
-    public void testCreatePerson() {
-        when(personRepository.save(entity))
+    public void testCreateStudent() {
+        when(studentRepository.save(entity))
                 .thenReturn(entity);
-        returnedEntity = personService.createPerson(entity);
+        returnedEntity = studentService.createStudent(entity);
         Assert.assertEquals(entityNotReturnedMessage, entity, returnedEntity);
     }
 
     @Test
-    public void testFindPeople() {
-        when(personRepository.findAll())
+    public void testFindAllStudents() {
+        when(studentRepository.findAll())
                 .thenReturn(entityCollection);
-        returnedEntityCollection = personService.findPeople();
+        returnedEntityCollection = studentService.findAllStudents();
         Assert.assertEquals(entityNotReturnedMessage, entityCollection, returnedEntityCollection);
     }
 
     @Test
-    public void testFindPersonById() {
-        when(personRepository.findOne(entityId))
+    public void testFindStudentById() {
+        when(studentRepository.findOne(entityId))
                 .thenReturn(entity);
-        returnedEntity = personService.findPersonById(entityId);
+        returnedEntity = studentService.findStudentById(entityId);
         Assert.assertEquals(entityNotReturnedMessage, entity, returnedEntity);
     }
 
     @Test
-    public void testUpdatePerson() {
-        when(personRepository.save(entity))
+    public void testUpdateStudentById() {
+        when(studentRepository.save(entity))
                 .thenReturn(entity);
-        returnedEntity = personService.updatePersonById(entity, entityId);
+        returnedEntity = studentService.updateStudentById(entityId, entity);
         Assert.assertEquals(entityNotReturnedMessage, entity, returnedEntity);
     }
 

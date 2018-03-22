@@ -12,14 +12,13 @@ public class Major implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String majorName;
+    private String name;
 
     public Major() {
     }
 
-    public Major(int id, String majorName) {
-        this.id = id;
-        this.majorName = majorName;
+    public Major(String name) {
+        this.name = name;
     }
 
     public int getId() {
@@ -30,12 +29,12 @@ public class Major implements Serializable {
         this.id = id;
     }
 
-    public String getMajorName() {
-        return majorName;
+    public String getName() {
+        return name;
     }
 
-    public void setMajorName(String majorName) {
-        this.majorName = majorName;
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

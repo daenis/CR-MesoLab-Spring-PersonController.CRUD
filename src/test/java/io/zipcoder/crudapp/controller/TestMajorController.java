@@ -58,7 +58,7 @@ public class TestMajorController extends BaseTestController<Major> {
 
     @Test
     public void testUpdateMajor() throws Exception {
-        when(majorService.updateMajorById(entity, childEntityId))
+        when(majorService.updateMajorById(childEntityId, entity))
                 .thenReturn(entity);
         mvcPerformUpdateWithOnePathVariable(idEndpointUrl, childEntityId, entityAsJsonString);
     }
