@@ -66,6 +66,9 @@ public class Student {
      * Also research cascade = CascadeType.ALL (and other cascade types), they are a parameter of the @OneToOne
        annotation (like fetch)
 
+     * Note that this object will come back as NULL in the JSON response after a create, but when reading data via
+       GET (id or all), it is included
+
      * */
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "majorId", referencedColumnName = "id", insertable = false, updatable = false)

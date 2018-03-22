@@ -22,7 +22,7 @@ public class TestStudentService extends BaseTestService<Student> {
 
     @InjectMocks
     private static StudentService studentService = new StudentService(studentRepository);
-    
+
     @Before
     public void init() {
         entity = new Student();
