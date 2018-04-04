@@ -13,26 +13,59 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public abstract class BaseTestController<E> {
 
+    // Spring's Mock MVC, used for testing a Controller
     public MockMvc mvc;
+
+    // The base endpoint URL; this will typically be the URL that a POST is send to (eg. 'api/students' or
+    // 'api/students/{studentId}/majors'.
     public String baseEndpointUrl;
+
+    // The ID endpoint URL; this will typically be an individual entity (eg. 'api/students/{studentId}' or
+    // 'api/students/{studentId}/majors/{majorId}'
     public String idEndpointUrl;
+
+    // The error message to print when an entity is not returned in the expected state
     public String entityNotReturnedMessage = "The expected entity is not being returned";
-    public String entityNotDeletedMessage = "The entity is not being deleted";
-    public String predictedEntity;
+
+    // A variable to hold a representation of the returned entity as a JSON string (since the MockMVC returns a string)
     public String returnedEntity;
+
+    // An example parent ID. The parent is typically the first entity in the URL
     public int parentEntityId;
+
+    // An example child ID. The child is typically the second entity in the URL
     public int childEntityId;
+
+    // The entity
     public E entity;
-    public Collection<E> entityCollection = Collections.singleton(entity);
+
+    // A collection of the entity
+    public Collection<E> entityCollection;
+
+    // A representation of the entity as a JSON string
     public String entityAsJsonString;
+
+    // A representation of the entity collection as a JSON string
     public String entityCollectionAsJsonString;
 
     public void initDependentVariables() {
+        // Random parent entity ID assignment
         parentEntityId = 1;
+
+        // Random child entity ID assignment
         childEntityId = 3;
+
+        // ID endpoint is essentially the base endpoint with an ID place holder. Note that both the ID endpoint URL
+        // and the base endpoint URL can be overridden in the child class as needed
         idEndpointUrl = baseEndpointUrl + "/{id}";
+
+        // Write the entity as a JSON string
         entityAsJsonString = JsonTestUtil.writeEntityAsJsonString(entity);
+
+        // Instantiate the entity collection as a singleton
         entityCollection = Collections.singleton(entity);
+
+        // Write the entity collection as a JSON string
         entityCollectionAsJsonString = JsonTestUtil.writeEntityAsJsonString(entityCollection);
     }
 
