@@ -36,9 +36,9 @@ import java.util.Collection;
 public class MajorController {
 
     /**
-     * Service is declared as a private field
+     * Service is declared as a private, final field
      * */
-    private MajorService majorService;
+    private final MajorService majorService;
 
     /**
      * @Autowired is how the service bean is wired into this class. This will give the Spring Container control of
@@ -102,7 +102,7 @@ public class MajorController {
      * */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Major> updateMajorById(@PathVariable("id") int id, @RequestBody Major major) {
-        Major returnMajor = majorService.updateMajorById(id, major);
+        Major returnMajor = majorService.updateMajorById(major, id);
         return new ResponseEntity<>(returnMajor, HttpStatus.OK);
     }
 

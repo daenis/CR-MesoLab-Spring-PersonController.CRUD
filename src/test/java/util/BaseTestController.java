@@ -1,5 +1,6 @@
 package util;
 
+import io.zipcoder.crudapp.core.util.FormatterUtil;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -34,7 +35,7 @@ public abstract class BaseTestController<E> {
     protected int parentEntityId;
 
     // An example child ID. The child is typically the second entity in the URL
-    protected int childEntityId;
+    protected int entityId;
 
     // The entity
     protected E entity;
@@ -53,20 +54,20 @@ public abstract class BaseTestController<E> {
         parentEntityId = 1;
 
         // Random child entity ID assignment
-        childEntityId = 3;
+        entityId = 3;
 
         // ID endpoint is essentially the base endpoint with an ID place holder. Note that both the ID endpoint URL
         // and the base endpoint URL can be overridden in the child class as needed
         idEndpointUrl = baseEndpointUrl + "/{id}";
 
         // Write the entity as a JSON string
-        entityAsJsonString = JsonTestUtil.writeEntityAsJsonString(entity);
+        entityAsJsonString = FormatterUtil.writeEntityAsJsonString(entity);
 
         // Instantiate the entity collection as a singleton
         entityCollection = Collections.singleton(entity);
 
         // Write the entity collection as a JSON string
-        entityCollectionAsJsonString = JsonTestUtil.writeEntityAsJsonString(entityCollection);
+        entityCollectionAsJsonString = FormatterUtil.writeEntityAsJsonString(entityCollection);
     }
 
     protected ResultActions mvcPerformPostWithNoPathVariables

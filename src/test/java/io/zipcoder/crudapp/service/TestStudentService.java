@@ -62,7 +62,7 @@ public class TestStudentService extends BaseTestService<Student> {
         when(studentRepository.save(entity))
                 .thenReturn(entity);
 
-        returnedEntity = studentService.updateStudentById(entityId, entity);
+        returnedEntity = studentService.updateStudentById(entity, entityId);
 
         Assert.assertEquals(entityNotReturnedMessage, entity, returnedEntity);
     }

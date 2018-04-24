@@ -65,24 +65,24 @@ public class TestStudentController extends BaseTestController<Student> {
 
     @Test
     public void testFindStudentById() throws Exception {
-        when(studentService.findStudentById(childEntityId))
+        when(studentService.findStudentById(entityId))
                 .thenReturn(entity);
-        returnedEntity = mvcPerformGetWithOnePathVariable(idEndpointUrl, childEntityId);
+        returnedEntity = mvcPerformGetWithOnePathVariable(idEndpointUrl, entityId);
         Assert.assertEquals(entityNotReturnedMessage, entityAsJsonString, returnedEntity);
     }
 
     @Test
     public void testUpdateStudentById() throws Exception {
-        when(studentService.updateStudentById(childEntityId, entity))
+        when(studentService.updateStudentById(entity, entityId))
                 .thenReturn(entity);
-        mvcPerformUpdateWithOnePathVariable(idEndpointUrl, childEntityId, entityAsJsonString);
+        mvcPerformUpdateWithOnePathVariable(idEndpointUrl, entityId, entityAsJsonString);
     }
 
     @Test
     public void testDeleteStudentById() throws Exception {
-        when(studentService.findStudentById(childEntityId))
+        when(studentService.findStudentById(entityId))
                 .thenReturn(entity);
-        returnedEntity = mvcPerformDeleteWithOnePathVariable(idEndpointUrl, childEntityId);
+        returnedEntity = mvcPerformDeleteWithOnePathVariable(idEndpointUrl, entityId);
     }
 
 }

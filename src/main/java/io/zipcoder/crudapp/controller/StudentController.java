@@ -14,7 +14,7 @@ import java.util.Collection;
 @RequestMapping(value = "/api/students")
 public class StudentController {
 
-    private StudentService studentService;
+    private final StudentService studentService;
 
     @Autowired
     public StudentController(StudentService studentService) {
@@ -41,7 +41,7 @@ public class StudentController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Student> updateStudentById(@RequestBody Student student, @PathVariable("id") int id) {
-        Student returnStudent = studentService.updateStudentById(id, student);
+        Student returnStudent = studentService.updateStudentById(student, id);
         return new ResponseEntity<>(returnStudent, HttpStatus.OK);
     }
 

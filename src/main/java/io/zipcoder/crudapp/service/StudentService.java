@@ -29,7 +29,7 @@ public class StudentService {
         return studentRepository.findOne(id);
     }
 
-    public Student updateStudentById(int id, Student student) {
+    public Student updateStudentById(Student student, int id) {
         student.setId(id);
         return studentRepository.save(student);
     }

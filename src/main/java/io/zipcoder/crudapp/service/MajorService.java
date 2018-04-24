@@ -46,7 +46,7 @@ public class MajorService {
         - If the major already exists, it will updated it. It knows this by checking the id property
         - If the id property is null, the major does not exist, and a new Major is created in the data store
      * */
-    public Major updateMajorById(int id, Major major) {
+    public Major updateMajorById(Major major, int id) {
         major.setId(id);
         return majorRepository.save(major);
     }

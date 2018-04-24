@@ -65,7 +65,7 @@ public class TestMajorService extends BaseTestService<Major> {
         when(majorRepository.save(entity))
                 .thenReturn(entity);
 
-        returnedEntity = majorService.updateMajorById(entityId, entity);
+        returnedEntity = majorService.updateMajorById(entity, entityId);
 
         Assert.assertEquals(entityNotReturnedMessage, entity, returnedEntity);
     }
