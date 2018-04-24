@@ -24,12 +24,4 @@ public abstract class BaseTestService<E> {
         parentEntityId = 20;
     }
 
-    public void initSortAsc(String sortCode) {
-        sort = new Sort(Sort.Direction.ASC, sortCode);
-    }
-
-    public void initSortDesc(String sortCode) {
-        sort = new Sort(Sort.Direction.DESC, sortCode);
-    }
-
 }

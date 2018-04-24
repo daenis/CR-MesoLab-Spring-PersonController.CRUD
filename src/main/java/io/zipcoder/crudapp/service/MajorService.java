@@ -42,7 +42,7 @@ public class MajorService {
     }
 
     /**
-     * majorRepositorysave(major) will do one of two things:
+     * majorRepository.save(major) will do one of two things:
         - If the major already exists, it will updated it. It knows this by checking the id property
         - If the id property is null, the major does not exist, and a new Major is created in the data store
      * */

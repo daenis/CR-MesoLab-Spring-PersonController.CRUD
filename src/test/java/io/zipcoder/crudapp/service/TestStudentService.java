@@ -1,31 +1,29 @@
 package io.zipcoder.crudapp.service;
 
-import io.zipcoder.crudapp.model.Major;
 import io.zipcoder.crudapp.model.Student;
 import io.zipcoder.crudapp.repository.StudentRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import util.BaseTestService;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TestStudentService extends BaseTestService<Student> {
 
     @Mock
-    private static StudentRepository studentRepository;
+    private StudentRepository studentRepository;
 
-    @InjectMocks
-    private static StudentService studentService = new StudentService(studentRepository);
+    private StudentService studentService;
 
     @Before
     public void init() {
         entity = new Student();
+        studentService = new StudentService(studentRepository);
         initDependentVariables();
     }
 
@@ -33,7 +31,9 @@ public class TestStudentService extends BaseTestService<Student> {
     public void testCreateStudent() {
         when(studentRepository.save(entity))
                 .thenReturn(entity);
+
         returnedEntity = studentService.createStudent(entity);
+
         Assert.assertEquals(entityNotReturnedMessage, entity, returnedEntity);
     }
 
@@ -41,7 +41,9 @@ public class TestStudentService extends BaseTestService<Student> {
     public void testFindAllStudents() {
         when(studentRepository.findAll())
                 .thenReturn(entityCollection);
+
         returnedEntityCollection = studentService.findAllStudents();
+
         Assert.assertEquals(entityNotReturnedMessage, entityCollection, returnedEntityCollection);
     }
 
@@ -49,7 +51,9 @@ public class TestStudentService extends BaseTestService<Student> {
     public void testFindStudentById() {
         when(studentRepository.findOne(entityId))
                 .thenReturn(entity);
+
         returnedEntity = studentService.findStudentById(entityId);
+
         Assert.assertEquals(entityNotReturnedMessage, entity, returnedEntity);
     }
 
@@ -57,8 +61,22 @@ public class TestStudentService extends BaseTestService<Student> {
     public void testUpdateStudentById() {
         when(studentRepository.save(entity))
                 .thenReturn(entity);
+
         returnedEntity = studentService.updateStudentById(entityId, entity);
+
         Assert.assertEquals(entityNotReturnedMessage, entity, returnedEntity);
+    }
+
+    @Test
+    public void testDeleteStudentById() {
+        doNothing()
+                .when(studentRepository)
+                .delete(entityId);
+
+        studentService.deleteStudentById(entityId);
+
+        verify(studentRepository, times(1))
+                .delete(entityId);
     }
 
 }
